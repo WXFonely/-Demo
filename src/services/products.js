@@ -12,7 +12,7 @@ export const getProducts = (params) => {
 
 /**
  * 获取商品详情
- * @param {*} id 商品id 
+ * @param {*} id 商品id
  */
 export const getProductDetail = (id) => {
   return axios.get(`/api/v1/products/${id}`);

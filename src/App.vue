@@ -1,6 +1,11 @@
 <template>
   <div>
-    <router-view/>
+    <van-nav-bar title="锤子商城" left-text="返回" left-arrow class="nav">
+      <van-icon name="search" slot="right" />
+    </van-nav-bar>
+
+    <router-view></router-view>
+
     <div class="nav-bar">
       <!-- active表示当前tabbar选中的索引 -->
       <van-tabbar v-model="active" active-color="deeppink" @change="navChangeHandle">

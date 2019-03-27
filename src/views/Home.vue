@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <van-nav-bar title="锤子商城" left-text="返回" left-arrow class="nav">
-      <van-icon name="search" slot="right" />
-    </van-nav-bar>
     <van-swipe :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(img, index) in images" :key="index">
         <img class="swipe-img" :src="img"/>
@@ -12,7 +9,6 @@
       text="4.17发布会上将锤子ROM的三个特色概括为：“漂亮、细节规划、人性化的功用”。 [3]  锤子ROM追求规划和个人体验，而且寻求超越苹果的操作和外观。"
       left-icon="volume-o"
     />
-    
   <van-nav-bar class="top1">
     <span>热销商品</span>
     <van-icon class-prefix="my-icon" name="arrow" />
@@ -44,14 +40,14 @@
 import { images } from '../data'
 import { getProducts } from '../services/products'
 import { addToShopCart } from '../services/users'
-import { serverUrl } from '../utils/config' 
+import { serverUrl } from '../utils/config'
 
 
 export default {
    name: 'home',
   data() {
-    return { 
-      images, 
+    return {
+      images,
       products: [],
       page: 1,
       pageCount: 1,
