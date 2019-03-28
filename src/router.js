@@ -7,6 +7,7 @@ import Login from './views/Login.vue'
 import Reg from './views/Reg.vue'
 import UserCenter from './views/UserCenter.vue'
 import Orders from './views/Orders.vue'
+import Coupan from './views/Coupan.vue'
 import ShopCart from './views/ShopCart.vue'
 import Search from './views/Search.vue'
 import { isLogined } from './utils/auth'
@@ -30,6 +31,10 @@ const router = new Router({
       path: '/reg',
       name: 'Reg',
       component: Reg,
+    }, {
+      path: '/coupan',
+      name: 'Coupan',
+      component: Coupan,
     }, {
       path: '/login',
       name: 'Login',
