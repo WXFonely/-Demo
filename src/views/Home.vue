@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <van-nav-bar title="锤子商城"  left-arrow class="nav">
-      <van-icon name="search" slot="right" @click="searchHandle"/>
-    </van-nav-bar>
+    
     <van-swipe :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(img, index) in images" :key="index">
         <img class="swipe-img" :src="img"/>
@@ -77,9 +75,7 @@ export default {
     topHandle(){
   		this.$router.push({name: 'List'})
     },
-    searchHandle(){
-      this.$router.push({name: 'Search'})
-    },
+   
     loadMore() {
       this.page += 1
       this.loadData()

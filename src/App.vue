@@ -1,6 +1,10 @@
 <template>
   <div>
-    <router-view/>
+    <van-nav-bar title="锤子商城"  left-arrow class="nav">
+      <van-icon name="search" slot="right" @click="searchHandle"/>
+    </van-nav-bar> 
+
+    <router-view></router-view>
     <div class="nav-bar">
       <!-- active表示当前tabbar选中的索引 -->
       <van-tabbar v-model="active" active-color="deeppink" @change="navChangeHandle">
@@ -35,6 +39,9 @@ export default {
     }
   },
   methods: {
+     searchHandle(){
+      this.$router.push({name: 'Search'})
+    },
     navChangeHandle() {
       // alert(this.active)
       switch(this.active) {
@@ -58,6 +65,7 @@ export default {
             name: 'UserCenter'
           })
         break;
+        
       }
     }
   }
