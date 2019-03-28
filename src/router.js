@@ -8,6 +8,7 @@ import Reg from './views/Reg.vue'
 import UserCenter from './views/UserCenter.vue'
 import Orders from './views/Orders.vue'
 import ShopCart from './views/ShopCart.vue'
+import Search from './views/Search.vue'
 import { isLogined } from './utils/auth'
 
 Vue.use(Router)
@@ -33,6 +34,10 @@ const router = new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+    }, {
+      path: '/search',
+      name: 'Search',
+      component: Search,
     }, {
       path: '/user_center',
       name: 'UserCenter',

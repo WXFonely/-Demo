@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <van-nav-bar title="锤子商城"  left-arrow class="nav">
+      <van-icon name="search" slot="right" @click="searchHandle"/>
+    </van-nav-bar>
     <van-swipe :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(img, index) in images" :key="index">
         <img class="swipe-img" :src="img"/>
@@ -9,10 +12,11 @@
       text="4.17发布会上将锤子ROM的三个特色概括为：“漂亮、细节规划、人性化的功用”。 [3]  锤子ROM追求规划和个人体验，而且寻求超越苹果的操作和外观。"
       left-icon="volume-o"
     />
-  <van-nav-bar class="top1">
+    
+  <div class="top1">
     <span>热销商品</span>
-    <van-icon class-prefix="my-icon" name="arrow" />
-  </van-nav-bar>
+    <van-icon name="arrow" class="top2" @click="topHandle"/>
+  </div>
 
     <van-card
       v-for="product in products"
@@ -26,7 +30,7 @@
     >
     <div slot="footer">
       <van-button size="mini" class="tj">特惠</van-button>
-      <van-button size="mini" class="yh">特惠</van-button>
+      <van-button size="mini" class="yh">优惠卷</van-button>
       <van-button size="mini" @click="addToCartHandle(product._id)" class="car"><van-icon class="btn-cart" name="cart" /></van-button>
     </div>
     </van-card>
@@ -40,18 +44,25 @@
 import { images } from '../data'
 import { getProducts } from '../services/products'
 import { addToShopCart } from '../services/users'
-import { serverUrl } from '../utils/config'
+import { serverUrl } from '../utils/config' 
 
 
 export default {
    name: 'home',
   data() {
-    return {
-      images,
+    return { 
+      images, 
       products: [],
       page: 1,
       pageCount: 1,
       serverUrl,
+    }
+  },
+  props: ["left-arrow"],
+  methods: {
+    onClickLeft() {
+      // 点击回退的时候当做地址回退
+      this.$router.go(-1);
     }
   },
   created() {
@@ -62,6 +73,12 @@ export default {
       // alert(id)
       addToShopCart(id, 1)
       this.$eventBus.$emit('addToShopCartEnd');
+    },
+    topHandle(){
+  		this.$router.push({name: 'List'})
+    },
+    searchHandle(){
+      this.$router.push({name: 'Search'})
     },
     loadMore() {
       this.page += 1
@@ -107,12 +124,20 @@ export default {
 .nav{background:#ccc;
       color:#fff;
 }
-#car{
+.car{
 
 }
 .top1{
   border-bottom:1px solid #ccc; 
-  background:#ccc;
+  height:2rem;
+  line-height: 2rem;
+  color: #666;
+  font-weight:600;
+  padding: 0 1rem;
+}
+.top2{
+  float: right; 
+  line-height: 2rem;
 }
 </style>
 

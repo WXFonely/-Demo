@@ -11,7 +11,7 @@
 <script>
 import { loginIn } from '../utils/auth'
 import { post } from 'axios'
-import { serverUrl } from '../utils/config'
+
 export default {
   data() {
     return {
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     loginHandle() {
-      post(`${serverUrl}/api/v1/auth/login`, {
+      post('http://localhost:3000/api/v1/auth/login', {
         userName: this.userName,
         password: this.password
       })
@@ -43,7 +43,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .btn-login {
   margin: 0.5rem 0;
 }
