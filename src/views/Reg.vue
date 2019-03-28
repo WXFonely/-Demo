@@ -1,7 +1,6 @@
 <template>
   <div class="list">
    <van-cell-group>
-      <van-field v-model="nickName" placeholder="请输入昵称" />
       <van-field v-model="userName" placeholder="请输入用户名" />
       <van-field v-model="password" type="password" placeholder="请输入密码" />
       <van-field v-model="repassword" type="password" placeholder="请输入密码" />
@@ -18,8 +17,6 @@ export default {
       userName: '',
       password: '',
       repassword: '',
-      nickName:'',
-      avator:''
     }
   },
   methods: {
@@ -34,15 +31,13 @@ export default {
       }
       const result = await reg({
         userName: this.userName,
-        password: this.password,
-        nickName: this.nickName,
-        avator: this.avator
+        password: this.password
       })
       if (result.data.code == "success") {
         loginIn(result.data.token) // 写token到本地
         // 页面跳转
         this.$router.push({
-          name: 'login'
+          name: 'UserCenter'
         })
       } else {
         alert('注册失败！')

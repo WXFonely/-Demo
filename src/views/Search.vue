@@ -27,15 +27,16 @@ export default {
     }
   },
   methods: {
-    fanhuiHandle(){ 
-      this.$router.go(-1)
+    fanhuiHandle(){
+      this.$router.push({name: 'home'});
+      this.$router.go(0)
     },
     }
 }
 </script>
 
 
-<style scoped>
+<style>
 body{
   background:#eee;
   width: 100%;
@@ -46,7 +47,9 @@ height: 2rem;
 line-height: 2rem;
 margin: 1rem;
 color: #999;
-} 
+}
+.bq{ 
+}
 .jg1,.jg2,.jg3,.jg4,.jg5{
   height: 1.5rem;
   font-size:1rem ;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar title="锤子商城"  left-arrow @click-left="onClickLeft" class="nav">
+    <van-nav-bar title="锤子商城"  left-arrow class="nav" v-if="!this.$route.meta.isShow">
       <van-icon name="search" slot="right" @click="searchHandle"/>
     </van-nav-bar> 
 
@@ -19,7 +19,6 @@
 <script>
 import { getShopCartCount } from './services/users'
 export default {
-  props: ["left-arrow"],//返回按钮
   created() {
     this.$eventBus.$on('navToZX', (link) => {
       if (link == 'UserCenter') {
@@ -40,12 +39,8 @@ export default {
     }
   },
   methods: {
-    searchHandle(){//搜索
+     searchHandle(){
       this.$router.push({name: 'Search'})
-    },
-    onClickLeft() {
-      // 点击回退的时候当做地址回退
-      this.$router.go(-1);
     },
     navChangeHandle() {
       // alert(this.active)

@@ -7,10 +7,7 @@ import Login from './views/Login.vue'
 import Reg from './views/Reg.vue'
 import UserCenter from './views/UserCenter.vue'
 import Orders from './views/Orders.vue'
-import Coupan from './views/Coupan.vue'
 import ShopCart from './views/ShopCart.vue'
-import dizhi from './views/dizhi.vue'
-import addAddress from './views/addAddress.vue'
 import Search from './views/Search.vue'
 import { isLogined } from './utils/auth'
 
@@ -20,36 +17,44 @@ const router = new Router({
   routes: [{
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      meta: { // 元标签
+        isShow:false
+      }
     }, {
       path: '/list',
       name:'List',
       component: List,
+      meta: { // 元标签
+        isShow:false
+      }
     }, {
       path: '/list/:id',
       name: 'Detail',
       component: Detail,
+      meta: { // 元标签
+        isShow:false
+      }
     }, {
       path: '/reg',
       name: 'Reg',
       component: Reg,
-    }, {
-      path: '/coupan',
-      name: 'Coupan',
-      component: Coupan,
+      meta: { // 元标签
+        isShow:false
+      }
     }, {
       path: '/login',
       name: 'Login',
       component: Login,
-    }, {
-      path: '/search',
-      name: 'Search',
-      component: Search,
-    }, {
+      meta: { // 元标签
+        isShow:false
+      }
+    },{
       path: '/user_center',
       name: 'UserCenter',
       component: UserCenter,
       meta: { // 元标签
+        isShow:false,
         needLogin: true, // 需要登录
       }
     }, {
@@ -57,6 +62,7 @@ const router = new Router({
       name: 'Orders',
       component: Orders,
       meta: { // 元标签
+        isShow:false,
         needLogin: true, // 需要登录
       }
     }, {
@@ -64,24 +70,17 @@ const router = new Router({
       name: 'ShopCart',
       component: ShopCart,
       meta: { // 元标签
-        needLogin: true, // 需要登录
-      }
-    },{
-      path: '/dizhi',
-      name: 'dizhi',
-      component: dizhi,
-      meta: { // 元标签
-        needLogin: true, // 需要登录
+        isShow:false,
+        needLogin: false, // 需要登录
       }
     }, {
-      path: '/addAddress',
-      name: 'addAddress',
-      component: addAddress,
+      path: '/Search',
+      name: 'Search',
+      component: Search,
       meta: { // 元标签
-        needLogin: true, // 需要登录
+        isShow:true
       }
-    }, 
-    {
+    },{
       path: '/about',
       name: 'about',
       // route level code-splitting

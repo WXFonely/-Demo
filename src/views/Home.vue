@@ -27,7 +27,8 @@
       :thumb-link="`#/list/${product._id}`"
     >
     <div slot="footer">
-      <van-button size="mini" class="yh" @click="yhHandle">优惠卷</van-button>
+      <van-button size="mini" class="tj">特惠</van-button>
+      <van-button size="mini" class="yh">优惠卷</van-button>
       <van-button size="mini" @click="addToCartHandle(product._id)" class="car"><van-icon class="btn-cart" name="cart" /></van-button>
     </div>
     </van-card>
@@ -41,7 +42,7 @@
 import { images } from '../data'
 import { getProducts } from '../services/products'
 import { addToShopCart } from '../services/users'
-import { serverUrl } from '../utils/config'
+import { serverUrl } from '../utils/config' 
 
 
 export default {
@@ -55,7 +56,13 @@ export default {
       serverUrl,
     }
   },
-  
+  props: ["left-arrow"],
+  methods: {
+    onClickLeft() {
+      // 点击回退的时候当做地址回退
+      this.$router.go(-1);
+    }
+  },
   created() {
     this.loadData()
   },
@@ -68,9 +75,7 @@ export default {
     topHandle(){
   		this.$router.push({name: 'List'})
     },
-   yhHandle(){
-     this.$router.push({name: 'Coupan'})
-   },
+   
     loadMore() {
       this.page += 1
       this.loadData()
@@ -96,7 +101,10 @@ export default {
 .swipe-img {
   width: 100%;
 }
-
+.tj{
+  background: blue;
+  color: #fff
+}
 .yh{
   background: pink;
 }
@@ -112,7 +120,9 @@ export default {
 .nav{background:#ccc;
       color:#fff;
 }
+.car{
 
+}
 .top1{
   border-bottom:1px solid #ccc; 
   height:2rem;
