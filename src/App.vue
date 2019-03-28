@@ -1,6 +1,10 @@
 <template>
   <div>
-    <router-view/>
+    <van-nav-bar title="锤子商城"  left-arrow @click-left="onClickLeft" class="nav">
+      <van-icon name="search" slot="right" @click="searchHandle"/>
+    </van-nav-bar> 
+
+    <router-view></router-view>
     <div class="nav-bar">
       <!-- active表示当前tabbar选中的索引 -->
       <van-tabbar v-model="active" active-color="deeppink" @change="navChangeHandle">
@@ -15,6 +19,7 @@
 <script>
 import { getShopCartCount } from './services/users'
 export default {
+  props: ["left-arrow"],//返回按钮
   created() {
     this.$eventBus.$on('navToZX', (link) => {
       if (link == 'UserCenter') {
@@ -35,6 +40,13 @@ export default {
     }
   },
   methods: {
+    searchHandle(){//搜索
+      this.$router.push({name: 'Search'})
+    },
+    onClickLeft() {
+      // 点击回退的时候当做地址回退
+      this.$router.go(-1);
+    },
     navChangeHandle() {
       // alert(this.active)
       switch(this.active) {
@@ -58,6 +70,7 @@ export default {
             name: 'UserCenter'
           })
         break;
+        
       }
     }
   }

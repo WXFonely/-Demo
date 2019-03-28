@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <van-nav-bar title="锤子商城" left-text="返回" left-arrow class="nav">
-      <van-icon name="search" slot="right" />
-    </van-nav-bar>
+    
     <van-swipe :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(img, index) in images" :key="index">
         <img class="swipe-img" :src="img"/>
@@ -13,10 +11,10 @@
       left-icon="volume-o"
     />
     
-  <van-nav-bar class="top1">
+  <div class="top1">
     <span>热销商品</span>
-    <van-icon class-prefix="my-icon" name="arrow" />
-  </van-nav-bar>
+    <van-icon name="arrow" class="top2" @click="topHandle"/>
+  </div>
 
     <van-card
       v-for="product in products"
@@ -29,8 +27,7 @@
       :thumb-link="`#/list/${product._id}`"
     >
     <div slot="footer">
-      <van-button size="mini" class="tj">特惠</van-button>
-      <van-button size="mini" class="yh">特惠</van-button>
+      <van-button size="mini" class="yh" @click="yhHandle">优惠卷</van-button>
       <van-button size="mini" @click="addToCartHandle(product._id)" class="car"><van-icon class="btn-cart" name="cart" /></van-button>
     </div>
     </van-card>
@@ -44,7 +41,7 @@
 import { images } from '../data'
 import { getProducts } from '../services/products'
 import { addToShopCart } from '../services/users'
-import { serverUrl } from '../utils/config' 
+import { serverUrl } from '../utils/config'
 
 
 export default {
@@ -58,6 +55,7 @@ export default {
       serverUrl,
     }
   },
+  
   created() {
     this.loadData()
   },
@@ -67,6 +65,12 @@ export default {
       addToShopCart(id, 1)
       this.$eventBus.$emit('addToShopCartEnd');
     },
+    topHandle(){
+  		this.$router.push({name: 'List'})
+    },
+   yhHandle(){
+     this.$router.push({name: 'Coupan'})
+   },
     loadMore() {
       this.page += 1
       this.loadData()
@@ -92,10 +96,7 @@ export default {
 .swipe-img {
   width: 100%;
 }
-.tj{
-  background: blue;
-  color: #fff
-}
+
 .yh{
   background: pink;
 }
@@ -114,7 +115,15 @@ export default {
 
 .top1{
   border-bottom:1px solid #ccc; 
-  background:#ccc;
+  height:2rem;
+  line-height: 2rem;
+  color: #666;
+  font-weight:600;
+  padding: 0 1rem;
+}
+.top2{
+  float: right; 
+  line-height: 2rem;
 }
 </style>
 

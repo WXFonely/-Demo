@@ -7,9 +7,11 @@ import Login from './views/Login.vue'
 import Reg from './views/Reg.vue'
 import UserCenter from './views/UserCenter.vue'
 import Orders from './views/Orders.vue'
+import Coupan from './views/Coupan.vue'
 import ShopCart from './views/ShopCart.vue'
 import dizhi from './views/dizhi.vue'
 import addAddress from './views/addAddress.vue'
+import Search from './views/Search.vue'
 import { isLogined } from './utils/auth'
 
 Vue.use(Router)
@@ -32,9 +34,17 @@ const router = new Router({
       name: 'Reg',
       component: Reg,
     }, {
+      path: '/coupan',
+      name: 'Coupan',
+      component: Coupan,
+    }, {
       path: '/login',
       name: 'Login',
       component: Login,
+    }, {
+      path: '/search',
+      name: 'Search',
+      component: Search,
     }, {
       path: '/user_center',
       name: 'UserCenter',
