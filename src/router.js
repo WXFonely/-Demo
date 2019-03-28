@@ -8,6 +8,8 @@ import Reg from './views/Reg.vue'
 import UserCenter from './views/UserCenter.vue'
 import Orders from './views/Orders.vue'
 import ShopCart from './views/ShopCart.vue'
+import dizhi from './views/dizhi.vue'
+import addAddress from './views/addAddress.vue'
 import { isLogined } from './utils/auth'
 
 Vue.use(Router)
@@ -51,6 +53,20 @@ const router = new Router({
       path: '/shop_cart',
       name: 'ShopCart',
       component: ShopCart,
+      meta: { // 元标签
+        needLogin: true, // 需要登录
+      }
+    },{
+      path: '/dizhi',
+      name: 'dizhi',
+      component: dizhi,
+      meta: { // 元标签
+        needLogin: true, // 需要登录
+      }
+    }, {
+      path: '/addAddress',
+      name: 'addAddress',
+      component: addAddress,
       meta: { // 元标签
         needLogin: true, // 需要登录
       }

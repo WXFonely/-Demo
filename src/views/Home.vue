@@ -111,9 +111,7 @@ export default {
 .nav{background:#ccc;
       color:#fff;
 }
-#car{
 
-}
 .top1{
   border-bottom:1px solid #ccc; 
   background:#ccc;

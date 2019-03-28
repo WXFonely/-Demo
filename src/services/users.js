@@ -8,7 +8,7 @@ export function login(userName, password) {
 }
 
 export function reg(user) {
-  return axios.post('/api/v1/auth/reg', user)
+  return axios.post('/api/v1/auth/reg',user)
 }
 
 export function addToShopCart(product, quantity) {
