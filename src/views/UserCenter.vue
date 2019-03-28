@@ -4,7 +4,7 @@
     </van-nav-bar>
     <div class="topUser">
       <div class="demo-avatar">
-        <Avatar icon="ios-person" size="large" />
+        <Avatar icon="ios-person" size="large" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2076349105,279514265&fm=26&gp=0.jpg"/>
       </div>
       <p>YOUR NAME</p>
     </div>
@@ -49,7 +49,7 @@
 </template>
 <script>
 import { logOut } from '../utils/auth'
-import { get } from '../utils/auth'
+import { get,post } from '../utils/auth'
 export default {
   data() {
     return {
@@ -74,7 +74,7 @@ export default {
       this.$router.push({
         name:'Coupan'
       })
-    }
+    },
   }
 }
 </script>

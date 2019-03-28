@@ -35,61 +35,43 @@ export default {
 
   methods: {
     onAdd() {
-    //   let addr = new Object;
-    //   console.log('content');
-    //   console.log(content);
-    //   console.log(this.$eventBus.$on("list"))
-    //   let len = this.$eventBus.$on("list").length + 1;
-    //   addr = {
-    //     id:len,
-    //     name:content.name,
-    //     tel:content.tel,
-    //     city:content.city,
-    //     county:content.county,
-    //     is_default:content.is_default,
-    //     postal_code:content.postal_code,
-    //     province:content.province,
-    //     area_code:content.area_code,
-    //     address:content.province+content.city+content.county+content.address_detail
-    // };
-    //   let is_add = this.list.push(addr);
       this.$router.push({
         name:'addAddress'
       })
     },
     onEdit(item, index) {
-      // let addressInfo = new Object;
-      // // Toast('编辑收货地址:' + index);
-      // console.log('编辑收货地址:' + index);
-      // console.log(item);
-      // // 进入编辑模式
-      // this.show1 = true;
-      // addressInfo = {
-      //   id:item.id,
-      //   name:item.name,
-      //   tel:item.tel,
-      //   province:item.province,
-      //   city:item.city,
-      //   county:item.county,
-      //   area_code:item.area_code,
-      //   address_detail:item.address,
-      //   postal_code:item.postal_code,
-      //   is_default:item.is_default,
-      // }
-      // this.addressInfo = addressInfo;
+      let addressInfo = new Object;
+      // Toast('编辑收货地址:' + index);
+      console.log('编辑收货地址:' + index);
+      console.log(item);
+      // 进入编辑模式
+      this.show1 = true;
+      addressInfo = {
+        id:item.id,
+        name:item.name,
+        tel:item.tel,
+        province:item.province,
+        city:item.city,
+        county:item.county,
+        area_code:item.area_code,
+        address_detail:item.address,
+        postal_code:item.postal_code,
+        is_default:item.is_default,
+      }
+      this.addressInfo = addressInfo;
       console.log(this.addressInfo)
 
-      post(`http://api.cat-shop.penkuoer.com/api/v1/addresses/${item.id}`,
-      {
-        "receiver":item.name,
-        "mobile":item.tel,
-        "regions":item.address,
-        "address":item.regions,
-        "idDefault":false
-      },
-      {
-        headers:{Authorization:"Bearer " +localStorage.getItem('token')}
-      })
+    //   post(`http://api.cat-shop.penkuoer.com/api/v1/addresses/${item.id}`,
+    //   {
+    //     "receiver":item.name,
+    //     "mobile":item.tel,
+    //     "regions":item.address,
+    //     "address":'航海路',
+    //     "idDefault":false
+    //   },
+    //   {
+    //     headers:{Authorization:"Bearer " +localStorage.getItem('token')}
+    //   })
     }
   },
   created(){
