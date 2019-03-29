@@ -45,7 +45,7 @@ export default {
           name: 'login'
         })
       } else {
-        alert('注册失败！')
+        alert('注册失败！该用户名已被占用')
       }
     }
   }

@@ -11,7 +11,6 @@
       @edit="onEdit"
     />
   </div>
-  
 </template>
 <script>
 import { get } from 'axios'
@@ -40,38 +39,19 @@ export default {
       })
     },
     onEdit(item, index) {
-      let addressInfo = new Object;
-      // Toast('编辑收货地址:' + index);
-      console.log('编辑收货地址:' + index);
-      console.log(item);
-      // 进入编辑模式
-      this.show1 = true;
-      addressInfo = {
-        id:item.id,
-        name:item.name,
-        tel:item.tel,
-        province:item.province,
-        city:item.city,
-        county:item.county,
-        area_code:item.area_code,
-        address_detail:item.address,
-        postal_code:item.postal_code,
-        is_default:item.is_default,
-      }
-      this.addressInfo = addressInfo;
-      console.log(this.addressInfo)
-
-    //   post(`http://api.cat-shop.penkuoer.com/api/v1/addresses/${item.id}`,
-    //   {
-    //     "receiver":item.name,
-    //     "mobile":item.tel,
-    //     "regions":item.address,
-    //     "address":'航海路',
-    //     "idDefault":false
-    //   },
-    //   {
-    //     headers:{Authorization:"Bearer " +localStorage.getItem('token')}
-    //   })
+      console.log(item)
+      console.log(index)
+      // post(`http://api.cat-shop.penkuoer.com/api/v1/addresses/${item.id}`,
+      // {
+      //   "receiver":item.name,
+      //   "mobile":item.tel,
+      //   "regions":item.address,
+      //   // "address":'航海路',
+      //   "idDefault":false
+      // },
+      // {
+      //   headers:{Authorization:"Bearer " +localStorage.getItem('token')}
+      // })
     }
   },
   created(){
@@ -91,7 +71,6 @@ export default {
           obj.name = arr1[i].receiver
           obj.tel = arr1[i].mobile
           obj.address = arr1[i].regions
-          obj.regions = arr1[i].address
          console.log(obj)
          this.list.push(obj)
       }
