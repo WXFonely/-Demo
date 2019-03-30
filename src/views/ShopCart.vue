@@ -1,41 +1,36 @@
 <template>
-  <div class="shopCart">
-    <div v-if="shopCart.length">
-      <table>
-        <thead>
-          <tr>
-            <th>
-              <input type="checkbox"   @click="checkAll()" v-model="checkall">
-            </th>
-            <th class="ming">商品名称</th>
-            <th class="danjia">单价</th>
-            <th class="tup">图片</th>
-            <th class="shu">购买数量</th>
-            <th>合计</th>
-            <th>操作</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(goods,index) in list" :key="index">
-            <td>
-              <input type="checkbox"  v-model="checkeds" :value="goods._id">
-            </td>
-            <td>{{ goods.name }}</td>
-            <td>{{ goods.price }}</td>
-            <td><img class="coverimg" :src='serverUrl+goods.coverImg' alt=""></td>
-            <td>
-              <button @click="handleReduce(index)">-</button>
-              {{goods.num}}
-              <button @click="handleAdd(index)">+</button>
-            </td>
-            <td>{{ goods.price * goods.num}}</td>
-            <td><button @click="handleRemove(index)">移除</button></td>
-          </tr>
-        </tbody>
-      </table>
-      <div>共{{ count }}件商品 购物车总金额：￥{{total}}元</div>
-    </div>
-    <div v-else>购物车为空</div>
+<div>
+  <div class="cart-box" v-if="shopCart.length">
+      <div class="cart-top">
+         <input class="quanx" type="checkbox"   @click="checkAll()" v-model="checkall">
+         <span>全选</span>
+      </div>
+      <div class="card" v-for="(item,index) in list" :key="index">
+          <dl>
+            <dt>
+              <input class="danx" type="checkbox"  v-model="checkeds" :value="item._id">
+              <img :src='serverUrl+item.coverImg'/>
+            </dt>
+            <dd>
+                <p>{{item.name}}</p>
+                <p>{{item.descriptions}}</p>
+                <p>￥{{item.price}}</p>
+                <div class="sl">
+                  数量：
+                  <button @click="handleReduce(index)">-</button>
+                   <span>{{item.num}}</span>
+                  <button @click="handleAdd(index)">+</button>
+                </div>
+                <button class="dela" @click="handleRemove(index)">移除</button>
+            </dd>
+          </dl>
+      </div>
+      <div class="zj">
+        <div>共<span>{{ count }}</span>件商品</div>
+        <div>总金额：<span>￥{{total}}元</span></div>
+      </div>
+  </div>
+  <div v-else>购物车为空</div>
   </div>
 </template>
 <script>
@@ -43,13 +38,13 @@ import { getShopCart } from "../services/users";
 import { getProductDetail } from "../services/products";
 import { serverUrl } from '../utils/config'
 export default {
-  data() {
+   data() {
     return {
       shopCart: [],
       list: [],
+      serverUrl,
       checkall: false,
       checkeds: [],
-      serverUrl
     };
   },
   created() {
@@ -83,7 +78,7 @@ export default {
   },
   methods: {
     handleReduce: function(index) {
-      if (this.list[index].num == 0) {
+      if (this.list[index].num == 1) {
         return;
       } else {
         this.list[index].num--;
@@ -114,20 +109,93 @@ export default {
       }
     },
   }
-};
+}
 </script>
 <style scoped>
-.shopCart{
-  font-size:0.75rem;
+*{
+  padding:0;
+  margin:0;
+  color:#222020dc;
 }
-.coverimg{
+.cart-top{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  align-self: flex-start;
+}
+.quanx{
+  margin: 0 0.3rem;
+}
+.card{
+  margin-bottom:0.5rem;
+  background:#fff;
   width:100%;
-} 
-.tup,.ming,.danjia{
-  width:20%;
 }
-.shu{
-  width:30%;
+dl{
+  display: flex;
+  align-items: center;
+  padding:0.4rem 0;
+  width:100%;
+}
+dt{
+  width:40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+dd{
+  width:60%;
+  flex-direction: column;
+  display: flex;
+  align-items: left;
+  font-size:12px;
+  padding:0 0.5rem;
+}
+img{
+  width:80%;
+  height:80%;
+  background-size:cover;
+}
+.cart-box{
+  padding-bottom:60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+}
+p{
+  margin-top:0.5rem;
+}
+.dela{
+  margin-top:0.5rem;
+  width:20%;
+  border:0;
+  background:rgb(236, 63, 97);
+  color:#fff;
+}
+.sl{
+  margin-top:0.5rem;
+}
+.sl button{
+  border:0;
+}
+.sl button,.sl span{
+  display:inline-block;
+  width:10%;
+  height:10%;
+  text-align:center;
+  vertical-align: middle;
+}
+.zj{
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  background:#fff;
+  width:100%;
+  padding:1rem 0;
+}
+.zj span{
+  color:crimson;
 }
 </style>
-
