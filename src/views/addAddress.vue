@@ -1,7 +1,5 @@
 <template>
   <div>
-    <van-nav-bar title="AddressList 新增地址" class="nav" left-arrow @click-left="onClickLeft">
-    </van-nav-bar>
     <van-address-edit
       :area-list="areaList"
       show-postal
@@ -28,7 +26,6 @@ export default {
   },
   methods: {
     onSave(content) {
-      console.log(content)
       console.log(localStorage.getItem('token'))
       post('http://api.cat-shop.penkuoer.com/api/v1/addresses',{
         "receiver":content.name,

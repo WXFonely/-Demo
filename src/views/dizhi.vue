@@ -1,7 +1,5 @@
 <template>
   <div>
-    <van-nav-bar title="AddressList 地址列表" class="nav" left-arrow>
-    </van-nav-bar>
     <van-address-list
       v-model="chosenAddressId"
       :list="list"
@@ -15,12 +13,14 @@
 <script>
 import { get } from 'axios'
 import { post } from 'axios'
+import { put } from 'axios'
 import addAddressVue from './addAddress.vue';
 export default {
   data() {
     return {
       chosenAddressId: '1',
       list: [],
+      addressInfo:'',
       disabledList: [
         {
           id: '3',
@@ -39,20 +39,21 @@ export default {
       })
     },
     onEdit(item, index) {
-      console.log(item)
-      console.log(index)
-      // post(`http://api.cat-shop.penkuoer.com/api/v1/addresses/${item.id}`,
-      // {
-      //   "receiver":item.name,
-      //   "mobile":item.tel,
-      //   "regions":item.address,
-      //   // "address":'航海路',
-      //   "idDefault":false
-      // },
-      // {
-      //   headers:{Authorization:"Bearer " +localStorage.getItem('token')}
-      // })
-    }
+      console.log(item.id)
+      this.$router.push({
+        name:"addAddress",
+      }),
+      put(`http://api.cat-shop.penkuoer.com/api/v1/addresses/${item.id}`,{
+        "receiver":item.name,
+        "mobile":item.tel,
+        "regions":item.address,
+        "address":"航海路",
+        "idDefault":false
+      },
+      {
+        headers:{Authorization:"Bearer " +localStorage.getItem('token')}
+      })
+    },
   },
   created(){
     get('http://api.cat-shop.penkuoer.com/api/v1/addresses',
@@ -66,7 +67,7 @@ export default {
       // console.log(res.data.addresses);
       let arr1 = res.data.addresses;
       for(var i = 0;i<arr1.length;i++){
-          let obj = [];
+          let obj = {};
           obj.id = arr1[i]._id
           obj.name = arr1[i].receiver
           obj.tel = arr1[i].mobile
