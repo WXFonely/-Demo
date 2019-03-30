@@ -7,9 +7,10 @@
             <th>
               <input type="checkbox"   @click="checkAll()" v-model="checkall">
             </th>
-            <th>商品名称</th>
-            <th>单价</th>
-            <th>购买数量</th>
+            <th class="ming">商品名称</th>
+            <th class="danjia">单价</th>
+            <th class="tup">图片</th>
+            <th class="shu">购买数量</th>
             <th>合计</th>
             <th>操作</th>
           </tr>
@@ -21,6 +22,7 @@
             </td>
             <td>{{ goods.name }}</td>
             <td>{{ goods.price }}</td>
+            <td><img class="coverimg" :src='serverUrl+goods.coverImg' alt=""></td>
             <td>
               <button @click="handleReduce(index)">-</button>
               {{goods.num}}
@@ -39,13 +41,15 @@
 <script>
 import { getShopCart } from "../services/users";
 import { getProductDetail } from "../services/products";
+import { serverUrl } from '../utils/config'
 export default {
   data() {
     return {
       shopCart: [],
       list: [],
       checkall: false,
-      checkeds: []
+      checkeds: [],
+      serverUrl
     };
   },
   created() {
@@ -79,7 +83,6 @@ export default {
   },
   methods: {
     handleReduce: function(index) {
-      var _this=this
       if (this.list[index].num == 0) {
         return;
       } else {
@@ -113,4 +116,18 @@ export default {
   }
 };
 </script>
+<style scoped>
+.shopCart{
+  font-size:0.75rem;
+}
+.coverimg{
+  width:100%;
+} 
+.tup,.ming,.danjia{
+  width:20%;
+}
+.shu{
+  width:30%;
+}
+</style>
 

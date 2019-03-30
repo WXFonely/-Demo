@@ -2,7 +2,7 @@
   <div class="detail">
     <van-tabs class="card" type="card">
       <van-tab title="宝贝">
-        <img class="pic" :src='serverUrl+product.coverImg' />
+        <img class="pic" :src='serverUrl+product.coverImg' alt="图片出错了" />
         <van-card
           :num="product.quantity"
           :price="product.price"
@@ -13,9 +13,18 @@
         <van-button type="primary" @click="addToCartHandle(product._id)">加入购物车</van-button>
       </van-tab>
       <van-tab title="详情">
-        <div>
+        <div class="cards">
           <h4 :v-model="txt">{{txt}}</h4>
           <p :v-model="dsp">{{dsp}}</p>
+          <div class="yhpj">
+            <p>欢迎指数：</p>
+            <van-rate v-model="value"
+            icon="like"
+            void-icon="like-o"
+            disabled
+            />
+          </div>
+          <img class="pic" :src='serverUrl+product.coverImg' alt="图片出错了"/>
         </div>
       </van-tab>
       <van-tab title="推荐">
@@ -43,6 +52,9 @@ import { serverUrl } from '../utils/config'
 import { getProducts } from '../services/products'
 import { Button } from 'vant';
 import Vue from 'vue'
+import { Rate } from 'vant';
+
+Vue.use(Rate)
 Vue.use(Button);
 
 export default {
@@ -54,7 +66,8 @@ export default {
       txt:'',
       dsp:'',
       list:[],
-      page:1
+      page:1,
+      value: 4
     }
   },
   created() {
@@ -91,6 +104,14 @@ export default {
 }
 </script>
 <style scoped>
+.detail{
+  background:#fff;
+}
+h4,p{
+  margin-top:1rem;
+  margin-bottom:0;
+  padding:0;
+}
 .pic{
   width:100%;
   box-shadow:2px 2px 2px #cecece;
@@ -108,6 +129,23 @@ export default {
 .van-tabs__nav .van-tabs__nav--card{
   margin:0 !important;
 }
-
+.cards{
+  background:#fff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: left;
+  padding:0 1rem;
+}
+.yhpj{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: left;
+}
+.yhpj p{
+  color:red;
+  margin-bottom:0.6rem;
+}
 </style>
 

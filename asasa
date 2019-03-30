@@ -1,0 +1,60 @@
+[33mcommit 1460c38a24723b8a2f0c21b5de4db8bbeea673c1[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: admin <wxf_18438622783@163.com>
+Date:   Thu Mar 28 21:40:46 2019 +0800
+
+    购物车 search配置
+
+[33mcommit 069b74c56326c4edc86a7c5db48b9738857e248d[m
+Merge: 38f68e0 801f5df
+Author: lizhangfeng0824 <746331169@qq.com>
+Date:   Thu Mar 28 19:59:36 2019 +0800
+
+    合并第一次
+
+[33mcommit 38f68e088c5695f97dc1e2241b8ba8b71d147f74[m
+Author: lizhangfeng0824 <746331169@qq.com>
+Date:   Thu Mar 28 19:23:45 2019 +0800
+
+    登录注册新增地址完成
+
+[33mcommit 801f5df24520a3e7129b5775d50109cb690ab73c[m
+Author: wangzf <1468015881@qq.com>
+Date:   Thu Mar 28 16:39:59 2019 +0800
+
+    提交优惠券
+
+[33mcommit 30ece4a2c0d4aca0fd7615a2e3cc9f7f3d6f0fc3[m[33m ([m[1;32mdev[m[33m)[m
+Author: wangzf <1468015881@qq.com>
+Date:   Thu Mar 28 11:24:50 2019 +0800
+
+    首页，详情页冲突解决
+
+[33mcommit b46d9c357aae0040b0d493f29f209ac9c9f6ceb0[m
+Author: wangzf <1468015881@qq.com>
+Date:   Thu Mar 28 10:21:26 2019 +0800
+
+    首页
+
+[33mcommit 4bb10df465d5a184c12a372d507106d474f09673[m
+Author: admin <wxf_18438622783@163.com>
+Date:   Wed Mar 27 20:17:07 2019 +0800
+
+    大致完成detail 改了list将header放在app.vue里
+
+[33mcommit 939882af6f6a3b17d47df4761bf899780d004a6f[m
+Author: wangzf <1468015881@qq.com>
+Date:   Wed Mar 27 12:10:30 2019 +0800
+
+    11
+
+[33mcommit dd135d6bb4c441fe249917655ef2f5f62676c3c0[m
+Author: wangzf <1468015881@qq.com>
+Date:   Wed Mar 27 11:56:54 2019 +0800
+
+    尝试
+
+[33mcommit 985075370eafb706080858834f0dd4c91f06d900[m
+Author: 王正飞 <1468015881@qq.com>
+Date:   Wed Mar 27 11:16:45 2019 +0800
+
+    Initial commit

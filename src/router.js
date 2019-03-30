@@ -9,6 +9,7 @@ import UserCenter from './views/UserCenter.vue'
 import Orders from './views/Orders.vue'
 import ShopCart from './views/ShopCart.vue'
 import Search from './views/Search.vue'
+import cart from './views/cart.vue'
 import { isLogined } from './utils/auth'
 
 Vue.use(Router)
@@ -87,6 +88,14 @@ const router = new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: cart,
+      meta: { // 元标签
+        isShow:true
+      }
     }
   ]
 })

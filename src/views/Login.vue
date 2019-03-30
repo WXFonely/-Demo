@@ -29,7 +29,7 @@ export default {
         password: this.password
       })
         .then(res => {
-          console.log(res)
+          console.log(res.data)
         })
         .catch(err => {
           console.log(err)
