@@ -3,7 +3,7 @@
    <van-cell-group>
       <van-field v-model="userName" placeholder="请输入用户名" />
       <van-field v-model="password" type="password" placeholder="请输入密码" />
-      <van-field v-model="repassword" type="password" placeholder="请输入密码" />
+      <van-field v-model="repassword" type="password" placeholder="请再次输入密码" />
     </van-cell-group>
     <van-button @click="regHandle" class="btn-login" type="info" size="large">注册</van-button>
   </div>
@@ -40,7 +40,7 @@ export default {
           name: 'UserCenter'
         })
       } else {
-        alert('注册失败！')
+        alert('注册失败！该用户名已被占用')
       }
     }
   }
