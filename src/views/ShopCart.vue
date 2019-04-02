@@ -21,7 +21,7 @@
                    <span>{{item.num}}</span>
                   <button @click="handleAdd(item._id)">+</button>
                 </div>
-                <button class="dela" @click="handleRemove(item._id,index)">移除</button>
+                <button class="dela" @click="handleRemove(item.pid,index)">移除</button>
             </dd>
           </dl>
       </div>
@@ -60,6 +60,7 @@ export default {
        for(let i=0;i<this.shopCart.length;i++){
         this.list.push(this.shopCart[i].product)
         this.list[i].num=this.shopCart[i].quantity
+        this.list[i].pid=this.shopCart[i]._id
        }
     })
     },
@@ -79,9 +80,8 @@ export default {
     },
     handleRemove: function(id,index) {
       delFromProduct(id)
-      this.list.splice(index,1)
-      // this.list=[]
-      // this.getShop();
+      this.list=[]
+      this.getShop();
     },
     checkAll:function() {
       var _this = this;
