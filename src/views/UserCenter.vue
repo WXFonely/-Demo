@@ -1,6 +1,5 @@
 <template>
   <div class="list">
-
     <van-nav-bar title="个人中心" class="nav">
     </van-nav-bar>
     <div class="topUser">
@@ -44,26 +43,66 @@
     <router-link :to="{ name: 'ShopCart' }">
       <van-cell title="我的购物车" value="点击进入" />
     </router-link> -->
-
     <br>
-    <button @click="logOutHandle">退出</button>
+    <button class="esc" @click="logOutHandle">退出</button>
   </div>
 </template>
 <script>
 import { logOut } from '../utils/auth'
 import { get,post } from '../utils/auth'
-
 export default {
+  data() {
+    return {
+      activeName: '0'
+    };
+  },
   methods: {
     logOutHandle() {
       logOut()
       // 派发跳转事件 控制底部导航栏选中效果
       this.$eventBus.$emit('navToZX', 'Home')
       this.$router.push({
-        name: 'Home'
+        name: 'Home',
+      })
+    },
+    onChange(){
+      this.$router.push({
+        name:'dizhi'
+      })
+    },
+    enterHandle(){
+      this.$router.push({
+        name:'Coupan'
       })
     },
   }
 }
 </script>
-
+<style scoped>
+.fc{
+  width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+.topUser{
+  font-size: 1.2rem;
+  text-align: center
+}
+.dizhi{
+  margin: 1rem 0;
+}
+.esc{
+  width: 100%;
+  background: blue;
+  height: 3rem;
+  border-radius: 1.5rem;
+  color: #fff;
+  border:none;
+}
+.demo-avatar{
+  padding-top: 0.6rem;
+}
+</style>

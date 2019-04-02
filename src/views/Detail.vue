@@ -84,8 +84,12 @@ export default {
   },
   methods:{
      addToCartHandle(id) {
-      addToShopCart(id, 1)
-      this.$eventBus.$emit('addToShopCartEnd');
+       var _this=this
+      addToShopCart(id, 1,_this)
+      this.$eventBus.$emit('navToZX', 'ShopCart')
+      this.$router.push({
+        name: 'ShopCart',
+      })
     },
     loadData(){
       getProducts({ page: this.page })

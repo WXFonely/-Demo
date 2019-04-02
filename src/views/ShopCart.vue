@@ -17,11 +17,11 @@
                 <p>￥{{item.price}}</p>
                 <div class="sl">
                   数量：
-                  <button @click="handleReduce(index)">-</button>
+                  <button @click="handleReduce(index,item._id)">-</button>
                    <span>{{item.num}}</span>
-                  <button @click="handleAdd(index)">+</button>
+                  <button @click="handleAdd(item._id)">+</button>
                 </div>
-                <button class="dela" @click="handleRemove(index)">移除</button>
+                <button class="dela" @click="handleRemove(item._id,index)">移除</button>
             </dd>
           </dl>
       </div>
@@ -37,58 +37,51 @@
 import { getShopCart } from "../services/users";
 import { getProductDetail } from "../services/products";
 import { serverUrl } from '../utils/config'
+import { addToShopCart } from "../services/users";
+import { delFromProduct } from "../services/users"
 export default {
    data() {
     return {
-      shopCart: [],
       list: [],
       serverUrl,
       checkall: false,
       checkeds: [],
+      shopCart:[]
     };
   },
-  created() {
-    this.shopCart = getShopCart();
-    for (let i = 0; i < this.shopCart.length; i++) {
-      getProductDetail(this.shopCart[i].product)
-        .then(res => {
-          res.data.num = this.shopCart[i].quantity;
-          this.list = this.list.concat(res.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-  },
-  computed: {
-    count: function() {
-      var num = 0;
-      for (var i in this.list) {
-        num += parseInt(this.list[i].num);
-      }
-      return num;
-    },
-    total: function() {
-      var total = 0;
-      for (var i in this.list) {
-        total += this.list[i].price * this.list[i].num;
-      }
-      return total;
-    }
+  created(){
+   this.getShop();
   },
   methods: {
-    handleReduce: function(index) {
+    getShop:function(){
+       getShopCart().then(res=>{
+       this.shopCart=res.data
+       console.log(this.shopCart)
+       for(let i=0;i<this.shopCart.length;i++){
+        this.list.push(this.shopCart[i].product)
+        this.list[i].num=this.shopCart[i].quantity
+       }
+    })
+    },
+    handleReduce: function(index,id) {
       if (this.list[index].num == 1) {
         return;
       } else {
-        this.list[index].num--;
+        addToShopCart(id, -1,this)
+        this.list=[]
+        this.getShop();
       }
     },
-    handleAdd: function(index) {
-      this.list[index].num++;
+    handleAdd: function(id) {
+      addToShopCart(id, 1,this)
+      this.list=[]
+      this.getShop();
     },
-    handleRemove: function(index) {
-      this.list.splice(index, 1);
+    handleRemove: function(id,index) {
+      delFromProduct(id)
+      this.list.splice(index,1)
+      // this.list=[]
+      // this.getShop();
     },
     checkAll:function() {
       var _this = this;
@@ -108,8 +101,25 @@ export default {
         this.checkall = false;
       }
     },
+  },
+  computed: {
+    count: function() {
+      var num = 0;
+      for (var i in this.list) {
+        num += parseInt(this.list[i].num);
+      }
+      return num;
+    },
+    total: function() {
+      var total = 0;
+      for (var i in this.list) {
+        total += this.list[i].price * this.list[i].num;
+      }
+      return total;
+    }
+  },
   }
-}
+
 </script>
 <style scoped>
 *{

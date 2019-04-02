@@ -10,6 +10,8 @@ import Orders from './views/Orders.vue'
 import ShopCart from './views/ShopCart.vue'
 import Search from './views/Search.vue'
 import { isLogined } from './utils/auth'
+import Coupan from './views/Coupan.vue'
+import dizhi from './views/dizhi.vue'
 
 Vue.use(Router)
 
@@ -42,19 +44,31 @@ const router = new Router({
       meta: { // 元标签
         isShow:false
       }
-    }, {
+    },{
+      path: '/coupan',
+      name: 'Coupan',
+      component: Coupan,
+    },{
       path: '/login',
       name: 'Login',
       component: Login,
       meta: { // 元标签
-        isShow:false
+        isShow:true
+      }
+    },{
+      path: '/dizhi',
+      name: 'dizhi',
+      component: dizhi,
+      meta: { // 元标签
+        needLogin: true, // 需要登录
+        isShow:true,
       }
     },{
       path: '/user_center',
       name: 'UserCenter',
       component: UserCenter,
       meta: { // 元标签
-        isShow:false,
+        isShow:true,
         needLogin: true, // 需要登录
       }
     }, {
@@ -71,7 +85,7 @@ const router = new Router({
       component: ShopCart,
       meta: { // 元标签
         isShow:false,
-        needLogin: false, // 需要登录
+        needLogin: true, // 需要登录
       }
     }, {
       path: '/Search',
@@ -88,6 +102,7 @@ const router = new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     }
+
   ]
 })
 
@@ -96,12 +111,12 @@ const router = new Router({
 //  from  从哪里来
 //  next  下一个,继续执行
 router.beforeEach(function(to, from, next) {
-  console.group('路由跳转之前')
-  console.log('执行了')
-  console.log(to)
-  console.log(from)
-  console.log(next)
-  console.groupEnd()
+  // console.group('路由跳转之前')
+  // console.log('执行了')
+  // console.log(to)
+  // console.log(from)
+  // console.log(next)
+  // console.groupEnd()
   // 在next方法中传递一个路由对象当做参数执行跳转
   if (to.meta.needLogin) {
     if (isLogined()) { // 判断是否已经登录
@@ -110,25 +125,25 @@ router.beforeEach(function(to, from, next) {
       next({
         name: 'Login'
       });
-    } 
+    }
   } else {
     next();
   }
 })
 
 // afterEach在跳转之后执行
-router.afterEach(function(to, from) {
-  console.log('路由跳转之后执行')
-})
+// router.afterEach(function(to, from) {
+//    console.log('路由跳转之后执行')
+// })
 
 // 在beforeEach之后 afterEach之前
 router.beforeResolve(function(to, from ,next) {
-  console.group('-------------')
-  console.log('路由执行了')
-  console.log(to)
-  console.log(from)
+  // console.group('-------------')
+  // console.log('路由执行了')
+  // console.log(to)
+  // console.log(from)
   next()
-  console.groupEnd()
+  // console.groupEnd()
 })
 
 export default router;
